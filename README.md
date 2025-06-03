@@ -1,6 +1,6 @@
 # Agent-Medical-2505
 
-This is a built-from-scratch, fully cutomized language-model LM agent, with speciality in answering medical questions.
+This is a built-from-scratch, fully customized language-model LM agent, with specialty in answering medical questions.
 
 For example, see the following comprehensive medical case, where we are asking the potential disease that causes these problems for the patient.
 
