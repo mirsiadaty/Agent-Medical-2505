@@ -2,6 +2,9 @@
 
 This is a built-from-scratch, fully customized language-model LM agent, with specialty in answering medical questions.
 
+![Screenshot from 2025-06-03 16-34-06](https://github.com/user-attachments/assets/74e366bf-f928-4abf-b648-13ffcc8ce41d)
+
+
 For example, see the following comprehensive medical case, where we are asking the potential disease that causes these problems for the patient.
 
 ```
