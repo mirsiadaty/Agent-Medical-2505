@@ -110,6 +110,8 @@ The response includes lists that point to the medical references per list items 
 
 This is an example prompt to define the "Planner" agent:
 
+This example uses a local QwQ language model (qwq-32b-q8_0.gguf). QwQ is the reasoning model of the Qwen series. This example runs the inference on 'llama_cpp'. Llama.cpp is a software library written in C/C++ designed for efficient inference of large language models.
+
 ```
 AgentPlannerMedical = """<|im_start|>user
 You are a planning agent. If you do not know the answer, reply I don't know, don't make things up.
