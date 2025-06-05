@@ -2,6 +2,8 @@
 
 This is a built-from-scratch, fully customized language-model LM agent, with specialty in answering medical questions.
 
+This multi-agent-system defines a memory with fast random access (via hashmap), which is also saved to disk as a json file everytime the mem is updated. 
+
 ![Screenshot from 2025-06-03 16-34-06](https://github.com/user-attachments/assets/74e366bf-f928-4abf-b648-13ffcc8ce41d)
 
 
