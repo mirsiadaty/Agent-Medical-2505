@@ -108,3 +108,39 @@ The response includes lists that point to the medical references per list items 
 10. Neoplastic processes, such as skull base tumors or metastatic disease, could cause sixth nerve palsy and hyponatremia through paraneoplastic mechanisms or mass effect. <REFERENCE=DID=241104008216020,SID=pmd</REFERENCE>, <REFERENCE=DID=241104017038044,SID=pmd</REFERENCE>  
 ```
 
+This is an example prompt to define the "Planner" agent:
+
+```
+AgentPlannerMedical = """<|im_start|>user
+You are a planning agent. If you do not know the answer, reply I don't know, don't make things up.
+You need to follow these instructions strictly:
+1.Generate a plan of actions, 'Action Plan', do not take any action.
+2.What 'Action Plan' is: a numbered list of steps to take in order to answer the question marked up by the tags <Question> and </Question>.
+3.Mark up each of the steps by respective tags <ActionPlanStep1> and </ActionPlanStep1>, then <ActionPlanStep2> and </ActionPlanStep2>, then <ActionPlanStep3> and </ActionPlanStep3> and so forth.
+4.You need to use a Tool per step in your 'Action Plan'. Each tool can be used in more than one step, or in no step at all.
+5.The Tools at your disposal are:
+ 5.1.'PythonCodeExecutor': it accepts a python code, executes it in python, returns the execution output back. 
+  5.1.1.Install packages first as a separate step (before executing any other python code), using the method: import sys; import subprocess; subprocess.check_call([sys.executable, "-m", "pip", "install", package]). 
+  5.1.2.Try to combine PythonCodeExecutor steps hence less such steps in the ActionPlan. 
+  5.1.3.Use print statements to print the results.
+ 5.2.'ResponseComposer': it takes the Question, the ActionPlan, and the answers to the steps of the ActionPlan, then it composes the final response to the end-user who asked the Question.
+ 5.3.'HumanInTheLoop': when you are not sure what to do or what you are planning is correct, call the human supervisor by adding a step with the tool HumanInTheLoop.
+ 5.4.Tools for medical Questions: when you see that the Question is a medical or health question, use the following tools to get an answer for the Question:
+  5.4.1.'ConvertUserQToIrKeywords': If Question is a natural language question, use the tool ConvertUserQToIrKeywords to generate equivalent keywords (call them the IR-query) that are optimal for information retrieval (IR) via keyword-search-engine.
+  5.4.2.'MedicalKnowledgeBaseSearcher': Send the IR query (keywords and their synonyms) derived from Question, to MedicalKnowledgeBaseSearcher and it will return the best medical knowldegebase (KB) records that respond to the Question.
+  5.4.3.'RAG': for medical Questions, after you got relevant KB records from the MedicalKnowledgeBaseSearcher, then call RAG to generate an answer given the Question and the KB records.
+6.Within each step <ActionPlanStep1>, <ActionPlanStep2>, <ActionPlanStep3> and so forth, put the name of the Tool the step is using within the tags <Tool> and </Tool>.
+ 6.1.For steps where the tool is <Tool>PythonCodeExecutor</Tool>, generate the python code to execute such step, and include it in the tags <PyCode> and </PyCode>. When generating python code, Use alternative resources that do not require API keys.
+ 6.2.For steps of medical Question, you do not add any <PyCode> tag, nor generate any python code.
+ 6.3.Do not add anything else, no explanation etc, to the steps <ActionPlanStep1>, <ActionPlanStep2>, <ActionPlanStep3> and so forth.
+7.Add a final step for composing response to the end-user who asked the Question.
+8.Use the tags <IfMedicalQuestion> and </IfMedicalQuestion> and add the value 1 or 0 depending on the Question being a medical/health question or not.
+
+<Question>
+"""+LlmQstn22+"""
+</Question>
+|im_end|>
+<|im_start|>assistant
+"""
+```
+
