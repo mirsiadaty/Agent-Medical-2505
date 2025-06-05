@@ -108,9 +108,11 @@ The response includes lists that point to the medical references per list items 
 10. Neoplastic processes, such as skull base tumors or metastatic disease, could cause sixth nerve palsy and hyponatremia through paraneoplastic mechanisms or mass effect. <REFERENCE=DID=241104008216020,SID=pmd</REFERENCE>, <REFERENCE=DID=241104017038044,SID=pmd</REFERENCE>  
 ```
 
-This is an example prompt to define the "Planner" agent:
+<br>
 
-This example uses a local QwQ language model (qwq-32b-q8_0.gguf). QwQ is the reasoning model of the Qwen series. This example runs the inference on 'llama_cpp'. Llama.cpp is a software library written in C/C++ designed for efficient inference of large language models.
+<br>
+
+The following is an example prompt to define the "Planner" agent. This example uses a local QwQ language model (qwq-32b-q8_0.gguf). QwQ is the reasoning model of the Qwen series. This example runs the inference on 'llama_cpp'. Llama.cpp is a software library written in C/C++ designed for efficient inference of large language models.
 
 ```
 AgentPlannerMedical = """<|im_start|>user
